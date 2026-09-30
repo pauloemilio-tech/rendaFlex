@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { RotateCcw } from 'lucide-react'
 import { ButtonLink } from '../../components/common/ButtonLink'
+import { SimulationMarginComparison } from '../../components/expense-simulation/SimulationMarginComparison'
 import { RecommendationsSection } from '../../components/financial-analysis/RecommendationsSection'
 import { useExpenseSimulation } from '../../hooks/useExpenseSimulation'
 import { ImpactLevel, type ExpenseSimulationViewModel, type FinancialMetrics, type ImpactLevel as ImpactLevelValue } from '../../types'
@@ -33,9 +34,14 @@ export function ExpenseSimulationResultPage() {
     <header className="page-heading"><span className="eyebrow">Resultado da simulação</span><h1>Comparação dos cenários</h1><p>Veja o possível impacto demonstrativo da despesa informada.</p></header>
     <aside className="demo-notice"><strong>Resultado de caráter informativo.</strong><p>Use a comparação dos cenários como apoio antes de assumir uma nova despesa.</p></aside>
     <section className="expense-summary" aria-labelledby="expense-summary-title"><div><span>Despesa simulada</span><h2 id="expense-summary-title">{result.simulatedExpense.description}</h2></div><dl><div><dt>Valor total</dt><dd>{formatCurrency(result.simulatedExpense.totalAmount)}</dd></div><div><dt>Parcelas</dt><dd>{result.simulatedExpense.installments}</dd></div><div><dt>Valor mensal</dt><dd>{formatCurrency(result.simulatedExpense.monthlyAmount)}</dd></div></dl></section>
+    <SimulationMarginComparison
+      currentMetrics={result.currentMetrics}
+      projectedMetrics={result.projectedMetrics}
+      expenseDescription={result.simulatedExpense.description}
+      monthlyInstallmentAmount={result.monthlyInstallmentAmount}
+    />
     <section className="scenario-grid" aria-labelledby="scenario-title"><h2 className="visually-hidden" id="scenario-title">Perfis atual e projetado</h2><article className="scenario-card"><span>Cenário atual</span><h2>{currentProfile.name}</h2><strong>{formatProbability(result.currentProbability)}</strong><p>Probabilidade do perfil</p></article><article className="scenario-card projected"><span>Cenário projetado</span><h2>{projectedProfile.name}</h2><strong>{formatProbability(result.projectedProbability)}</strong><p>Probabilidade do perfil</p></article></section>
     <p className={`change-summary ${result.financialHealthWorsened ? 'change-worse' : ''}`}><strong>{result.profileChanged ? 'Mudança de perfil identificada' : 'Perfil mantido'}</strong><span>{changeDescription} Impacto: {impactLevelLabels[result.impactLevel]}.</span></p>
-    <section className="installment-highlight" aria-labelledby="installment-result-title"><span id="installment-result-title">Valor mensal da nova despesa</span><strong>{formatCurrency(result.monthlyInstallmentAmount)}</strong></section>
     <section className="result-section" aria-labelledby="comparison-title"><div className="result-section-heading"><h2 id="comparison-title">Indicadores atuais e projetados</h2><p>A diferença mostra a variação do cenário projetado.</p></div><div className="comparison-grid">{metrics(result.currentMetrics, result.projectedMetrics).map((metric) => { const difference = metric.projected - metric.current; const direction = difference > 0 ? 'Aumento' : difference < 0 ? 'Redução' : 'Estável'; return <article className="comparison-card" key={metric.label}><h3>{metric.label}</h3><dl><div><dt>Atual</dt><dd>{metric.format(metric.current)}</dd></div><div><dt>Projetado</dt><dd>{metric.format(metric.projected)}</dd></div><div><dt>Diferença</dt><dd>{direction}: {metric.format(Math.abs(difference))}</dd></div></dl></article> })}</div></section>
     <RecommendationsSection recommendations={result.recommendations} />
     <nav className="result-actions" aria-label="Ações do resultado"><button className="button button-primary" type="button" onClick={startAgain}><span className="button-content">Fazer nova simulação<RotateCcw className="button-icon" size={17} aria-hidden="true" /></span></button><ButtonLink to="/analysis/result" variant="secondary">Ver análise atual</ButtonLink><ButtonLink to="/" variant="secondary">Voltar para o início</ButtonLink></nav>
