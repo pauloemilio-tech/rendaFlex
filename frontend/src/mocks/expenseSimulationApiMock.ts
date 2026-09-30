@@ -14,12 +14,12 @@ export function createExpenseSimulationMock(request: ExpenseSimulationRequest): 
     currentScenario: {
       financialProfile: FinancialProfile.HEALTHY,
       probability: 0.84,
-      metrics: { averageIncome: 3450.75, incomeVariationCoefficientPercentage: 12.4, debtRatioPercentage: 31.8, fixedCommitmentPercentage: 27.35 },
+      metrics: { averageIncome: 3450.75, incomeVariationCoefficientPercentage: 12.4, debtRatioPercentage: 31.8, fixedCommitmentPercentage: 27.35, monthlyReference: 3450.75, monthlyCommitments: 943.79, availableMargin: 2506.96 },
     },
     projectedScenario: {
       financialProfile: FinancialProfile.UNDER_OBSERVATION,
       probability: 0.71,
-      metrics: { averageIncome: 3450.75, incomeVariationCoefficientPercentage: 12.4, debtRatioPercentage: 31.8, fixedCommitmentPercentage: 39.95 },
+      metrics: { averageIncome: 3450.75, incomeVariationCoefficientPercentage: 12.4, debtRatioPercentage: 31.8, fixedCommitmentPercentage: 39.95, monthlyReference: 3450.75, monthlyCommitments: 1378.58, availableMargin: 2072.17 },
     },
     profileChanged: true,
     financialHealthWorsened: true,

@@ -28,6 +28,9 @@ export type FinancialMetrics = {
   incomeVariationCoefficientPercentage: number
   debtRatioPercentage: number
   fixedCommitmentPercentage: number
+  monthlyReference: number
+  monthlyCommitments: number
+  availableMargin: number
 }
 
 export type Recommendation = {

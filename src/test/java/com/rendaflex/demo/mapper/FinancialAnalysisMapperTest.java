@@ -95,7 +95,10 @@ class FinancialAnalysisMapperTest {
                                 bd("3300.005"),
                                 bd("0.0247"),
                                 bd("0.1818"),
-                                bd("1.23456")
+                                bd("1.23456"),
+                                bd("3300.005"),
+                                bd("1500.005"),
+                                bd("1800.005")
                         ),
                         List.of(classified(0, TransactionCategory.TRANSPORT, "0.98")),
                         Map.of(TransactionCategory.TRANSPORT, bd("51.005")),
@@ -108,8 +111,37 @@ class FinancialAnalysisMapperTest {
         assertEquals(bd("2.47"), publicResponse.metrics().incomeVariationCoefficientPercentage());
         assertEquals(bd("18.18"), publicResponse.metrics().debtRatioPercentage());
         assertEquals(bd("123.46"), publicResponse.metrics().fixedCommitmentPercentage());
+        assertEquals(bd("3300.01"), publicResponse.metrics().monthlyReference());
+        assertEquals(bd("1500.01"), publicResponse.metrics().monthlyCommitments());
+        assertEquals(bd("1800.01"), publicResponse.metrics().availableMargin());
         assertEquals(bd("51.01"), publicResponse.categorySummary().get(TransactionCategory.TRANSPORT));
         assertEquals(bd("100.00"), publicResponse.categoryPercentages().get(TransactionCategory.TRANSPORT));
+    }
+
+    @Test
+    void shouldPreserveNegativeAvailableMargin() {
+        FinancialAnalysisResponse publicResponse = mapper.toPublicResponse(
+                requestWithSingleExpense(),
+                new InternalFinancialAnalysisResponse(
+                        FinancialProfile.AT_RISK,
+                        bd("0.91"),
+                        new InternalFinancialMetrics(
+                                bd("3000"),
+                                bd("0.0247"),
+                                bd("0.6000"),
+                                bd("1.1000"),
+                                bd("3000"),
+                                bd("3300"),
+                                bd("-300")
+                        ),
+                        List.of(classified(0, TransactionCategory.TRANSPORT, "0.98")),
+                        Map.of(TransactionCategory.TRANSPORT, bd("51")),
+                        Map.of(TransactionCategory.TRANSPORT, bd("1.0")),
+                        List.of()
+                )
+        );
+
+        assertEquals(bd("-300.00"), publicResponse.metrics().availableMargin());
     }
 
     @Test
@@ -250,7 +282,15 @@ class FinancialAnalysisMapperTest {
         return new InternalFinancialAnalysisResponse(
                 FinancialProfile.HEALTHY,
                 bd("0.91"),
-                new InternalFinancialMetrics(bd("3300"), bd("0.0247"), bd("0.1818"), bd("0.4545")),
+                new InternalFinancialMetrics(
+                        bd("3300"),
+                        bd("0.0247"),
+                        bd("0.1818"),
+                        bd("0.4545"),
+                        bd("3300"),
+                        bd("1500"),
+                        bd("1800")
+                ),
                 classifiedTransactions,
                 categorySummary,
                 categoryPercentages,

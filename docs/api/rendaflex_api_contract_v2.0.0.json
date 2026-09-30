@@ -90,6 +90,9 @@
       "otherFixedMonthlyExpenses": "Aluguel, mensalidades, assinaturas e outras despesas fixas mensais que não sejam dívidas.",
       "debtRatioFormula": "debtRatio = monthlyDebtPayments / averageIncome",
       "fixedCommitmentFormula": "fixedCommitment = (monthlyDebtPayments + otherFixedMonthlyExpenses) / averageIncome",
+      "monthlyReferenceFormula": "monthlyReference = averageIncome",
+      "monthlyCommitmentsFormula": "monthlyCommitments = monthlyDebtPayments + otherFixedMonthlyExpenses; transaction totals are intentionally excluded.",
+      "availableMarginFormula": "availableMargin = monthlyReference - monthlyCommitments; negative values are preserved and transaction totals are intentionally excluded.",
       "scale": "As razões internas usam representação decimal, em que 1.0 equivale a 100%, mas podem ultrapassar 1.0. Na resposta pública, a representação percentual pode ultrapassar 100%.",
       "zeroAverageIncomeHandling": "A equipe deve definir na implementação como tratar averageIncome igual a zero; este contrato não estabelece fórmula alternativa, limite ou código de erro específico não aprovado."
     },
@@ -305,12 +308,15 @@
     },
     "FinancialMetrics": {
       "type": "object", "additionalProperties": false,
-      "required": ["averageIncome", "incomeVariationCoefficientPercentage", "debtRatioPercentage", "fixedCommitmentPercentage"],
+      "required": ["averageIncome", "incomeVariationCoefficientPercentage", "debtRatioPercentage", "fixedCommitmentPercentage", "monthlyReference", "monthlyCommitments", "availableMargin"],
       "properties": {
         "averageIncome": {"type": "number", "minimum": 0},
         "incomeVariationCoefficientPercentage": {"type": "number", "minimum": 0},
         "debtRatioPercentage": {"type": "number", "minimum": 0, "description": "Pode ultrapassar 100 quando monthlyDebtPayments excede averageIncome."},
-        "fixedCommitmentPercentage": {"type": "number", "minimum": 0, "description": "Pode ultrapassar 100 quando os compromissos fixos totais excedem averageIncome."}
+        "fixedCommitmentPercentage": {"type": "number", "minimum": 0, "description": "Pode ultrapassar 100 quando os compromissos fixos totais excedem averageIncome."},
+        "monthlyReference": {"type": "number", "minimum": 0, "description": "ReferÃªncia mensal de renda; no MVP Ã© igual a averageIncome."},
+        "monthlyCommitments": {"type": "number", "minimum": 0, "description": "Soma de monthlyDebtPayments e otherFixedMonthlyExpenses, sem incluir transaÃ§Ãµes."},
+        "availableMargin": {"type": "number", "description": "monthlyReference menos monthlyCommitments; pode ser negativo."}
       }
     },
     "CategorySummary": {
@@ -484,11 +490,14 @@
         }
       },
       "InternalFinancialMetrics": {
-        "type": "object", "additionalProperties": false, "required": ["averageIncome", "incomeVariationCoefficient", "debtRatio", "fixedCommitment"],
+        "type": "object", "additionalProperties": false, "required": ["averageIncome", "incomeVariationCoefficient", "debtRatio", "fixedCommitment", "monthlyReference", "monthlyCommitments", "availableMargin"],
         "properties": {
           "averageIncome": {"type": "number", "minimum": 0}, "incomeVariationCoefficient": {"type": "number", "minimum": 0},
           "debtRatio": {"type": "number", "minimum": 0.0, "description": "Decimal ratio that may exceed 1.0."},
-          "fixedCommitment": {"type": "number", "minimum": 0.0, "description": "Decimal ratio that may exceed 1.0."}
+          "fixedCommitment": {"type": "number", "minimum": 0.0, "description": "Decimal ratio that may exceed 1.0."},
+          "monthlyReference": {"type": "number", "minimum": 0, "description": "Equal to averageIncome in the current MVP."},
+          "monthlyCommitments": {"type": "number", "minimum": 0, "description": "monthlyDebtPayments plus otherFixedMonthlyExpenses; excludes transactions."},
+          "availableMargin": {"type": "number", "description": "monthlyReference minus monthlyCommitments; may be negative."}
         }
       },
       "InternalCategoryPercentages": {
@@ -526,9 +535,9 @@
     },
     "examples": {
       "financialAnalysisRequest": {"incomeHistory": [3200.0, 3400.0, 3300.0], "monthlyDebtPayments": 600.0, "otherFixedMonthlyExpenses": 900.0, "savingFrequency": "OFTEN", "transactions": [{"sourceIndex": 0, "description": "Uber", "amount": 51.0}]},
-      "financialAnalysisResponse": {"financialProfile": "HEALTHY", "probability": 0.91, "metrics": {"averageIncome": 3300.0, "incomeVariationCoefficient": 0.0247, "debtRatio": 0.1818, "fixedCommitment": 0.4545}, "classifiedTransactions": [{"sourceIndex": 0, "predictedCategory": "TRANSPORT", "classificationProbability": 0.98}], "categorySummary": {"TRANSPORT": 51.0}, "categoryPercentages": {"TRANSPORT": 1.0}},
+      "financialAnalysisResponse": {"financialProfile": "HEALTHY", "probability": 0.91, "metrics": {"averageIncome": 3300.0, "incomeVariationCoefficient": 0.0247, "debtRatio": 0.1818, "fixedCommitment": 0.4545, "monthlyReference": 3300.0, "monthlyCommitments": 1500.0, "availableMargin": 1800.0}, "classifiedTransactions": [{"sourceIndex": 0, "predictedCategory": "TRANSPORT", "classificationProbability": 0.98}], "categorySummary": {"TRANSPORT": 51.0}, "categoryPercentages": {"TRANSPORT": 1.0}},
       "expenseSimulationRequest": {"incomeHistory": [3200.0, 3400.0, 3300.0], "monthlyDebtPayments": 600.0, "otherFixedMonthlyExpenses": 900.0, "savingFrequency": "OFTEN", "transactions": [{"sourceIndex": 0, "description": "Uber", "amount": 51.0}], "newExpense": {"description": "Notebook", "totalAmount": 3600.0, "installmentCount": 12, "installmentAmount": 300.0}},
-      "expenseSimulationResponse": {"currentScenario": {"financialProfile": "HEALTHY", "probability": 0.91, "metrics": {"averageIncome": 3300.0, "incomeVariationCoefficient": 0.0247, "debtRatio": 0.1818, "fixedCommitment": 0.4545}}, "projectedScenario": {"financialProfile": "UNDER_OBSERVATION", "probability": 0.78, "metrics": {"averageIncome": 3300.0, "incomeVariationCoefficient": 0.0247, "debtRatio": 0.2727, "fixedCommitment": 0.5455}}, "quantitativeImpact": {"metricVariations": {"debtRatio": 0.0909, "fixedCommitment": 0.091}}},
+      "expenseSimulationResponse": {"currentScenario": {"financialProfile": "HEALTHY", "probability": 0.91, "metrics": {"averageIncome": 3300.0, "incomeVariationCoefficient": 0.0247, "debtRatio": 0.1818, "fixedCommitment": 0.4545, "monthlyReference": 3300.0, "monthlyCommitments": 1500.0, "availableMargin": 1800.0}}, "projectedScenario": {"financialProfile": "UNDER_OBSERVATION", "probability": 0.78, "metrics": {"averageIncome": 3300.0, "incomeVariationCoefficient": 0.0247, "debtRatio": 0.2727, "fixedCommitment": 0.5455, "monthlyReference": 3300.0, "monthlyCommitments": 1800.0, "availableMargin": 1500.0}}, "quantitativeImpact": {"metricVariations": {"debtRatio": 0.0909, "fixedCommitment": 0.091}}},
       "transactionClassification": {"request": {"transactions": [{"sourceIndex": 0, "description": "Netflix"}]}, "response": {"transactions": [{"sourceIndex": 0, "predictedCategory": "SERVICES", "classificationProbability": 0.99}]}},
       "modelValidationError": {"code": "MODEL_VALIDATION_ERROR", "message": "Invalid financial analysis input.", "fieldErrors": []}
     }
@@ -553,7 +562,7 @@
       },
       "response": {
         "financialProfile": "HEALTHY", "probability": 0.91,
-        "metrics": {"averageIncome": 3300.0, "incomeVariationCoefficientPercentage": 2.47, "debtRatioPercentage": 18.18, "fixedCommitmentPercentage": 45.45},
+        "metrics": {"averageIncome": 3300.0, "incomeVariationCoefficientPercentage": 2.47, "debtRatioPercentage": 18.18, "fixedCommitmentPercentage": 45.45, "monthlyReference": 3300.0, "monthlyCommitments": 1500.0, "availableMargin": 1800.0},
         "classifiedTransactions": [{"description": "Uber", "amount": 51.0, "date": "2026-07-05", "type": "EXPENSE", "predictedCategory": "TRANSPORT", "classificationProbability": 0.98}, {"description": "Pagamento de cliente", "amount": 850.0, "date": "2026-07-15", "type": "INCOME"}],
         "categorySummary": {"TRANSPORT": 51.0}, "categoryPercentages": {"TRANSPORT": 100.0},
         "recommendations": [{"priority": "MEDIUM", "message": "Mantenha uma reserva para os meses de menor renda."}]
@@ -568,8 +577,8 @@
       },
       "response": {
         "newExpense": {"description": "Notebook", "totalAmount": 3600.0, "installmentCount": 12, "installmentAmount": 300.0},
-        "currentScenario": {"financialProfile": "HEALTHY", "probability": 0.91, "metrics": {"averageIncome": 3300.0, "incomeVariationCoefficientPercentage": 2.47, "debtRatioPercentage": 18.18, "fixedCommitmentPercentage": 45.45}},
-        "projectedScenario": {"financialProfile": "UNDER_OBSERVATION", "probability": 0.78, "metrics": {"averageIncome": 3300.0, "incomeVariationCoefficientPercentage": 2.47, "debtRatioPercentage": 27.27, "fixedCommitmentPercentage": 54.55}},
+        "currentScenario": {"financialProfile": "HEALTHY", "probability": 0.91, "metrics": {"averageIncome": 3300.0, "incomeVariationCoefficientPercentage": 2.47, "debtRatioPercentage": 18.18, "fixedCommitmentPercentage": 45.45, "monthlyReference": 3300.0, "monthlyCommitments": 1500.0, "availableMargin": 1800.0}},
+        "projectedScenario": {"financialProfile": "UNDER_OBSERVATION", "probability": 0.78, "metrics": {"averageIncome": 3300.0, "incomeVariationCoefficientPercentage": 2.47, "debtRatioPercentage": 27.27, "fixedCommitmentPercentage": 54.55, "monthlyReference": 3300.0, "monthlyCommitments": 1800.0, "availableMargin": 1500.0}},
         "profileChanged": true, "financialHealthWorsened": true, "impactLevel": "MODERATE",
         "recommendations": [{"priority": "HIGH", "message": "Considere uma parcela menor ou adiar a compra."}]
       }

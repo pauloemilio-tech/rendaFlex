@@ -6,6 +6,9 @@ public record FinancialMetrics(
         BigDecimal averageIncome,
         BigDecimal incomeVariationCoefficientPercentage,
         BigDecimal debtRatioPercentage,
-        BigDecimal fixedCommitmentPercentage
+        BigDecimal fixedCommitmentPercentage,
+        BigDecimal monthlyReference,
+        BigDecimal monthlyCommitments,
+        BigDecimal availableMargin
 ) {
 }

@@ -198,12 +198,18 @@ public class SimulationMapper {
         validateNonNegative(metrics.incomeVariationCoefficient());
         validateNonNegative(metrics.debtRatio());
         validateNonNegative(metrics.fixedCommitment());
+        validateNonNegative(metrics.monthlyReference());
+        validateNonNegative(metrics.monthlyCommitments());
+        validatePresent(metrics.availableMargin());
 
         return new FinancialMetrics(
                 money(metrics.averageIncome()),
                 percentage(metrics.incomeVariationCoefficient()),
                 percentage(metrics.debtRatio()),
-                percentage(metrics.fixedCommitment())
+                percentage(metrics.fixedCommitment()),
+                money(metrics.monthlyReference()),
+                money(metrics.monthlyCommitments()),
+                money(metrics.availableMargin())
         );
     }
 
@@ -317,6 +323,12 @@ public class SimulationMapper {
 
     private void validateNonNegative(BigDecimal value) {
         if (value == null || value.compareTo(ZERO) < 0) {
+            throw invalidInternalResponse();
+        }
+    }
+
+    private void validatePresent(BigDecimal value) {
+        if (value == null) {
             throw invalidInternalResponse();
         }
     }

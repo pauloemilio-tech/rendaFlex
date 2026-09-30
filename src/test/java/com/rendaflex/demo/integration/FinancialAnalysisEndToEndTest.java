@@ -41,7 +41,10 @@ class FinancialAnalysisEndToEndTest {
                 "averageIncome": 3300.00,
                 "incomeVariationCoefficient": 0.0247,
                 "debtRatio": 0.1818,
-                "fixedCommitment": 0.4545
+                "fixedCommitment": 0.4545,
+                "monthlyReference": 3300.00,
+                "monthlyCommitments": 1500.00,
+                "availableMargin": 1800.00
               },
               "classifiedTransactions": [
                 {
@@ -119,6 +122,9 @@ class FinancialAnalysisEndToEndTest {
                 .andExpect(jsonPath("$.metrics.incomeVariationCoefficientPercentage").value(2.47))
                 .andExpect(jsonPath("$.metrics.debtRatioPercentage").value(18.18))
                 .andExpect(jsonPath("$.metrics.fixedCommitmentPercentage").value(45.45))
+                .andExpect(jsonPath("$.metrics.monthlyReference").value(3300.00))
+                .andExpect(jsonPath("$.metrics.monthlyCommitments").value(1500.00))
+                .andExpect(jsonPath("$.metrics.availableMargin").value(1800.00))
                 .andExpect(jsonPath("$.classifiedTransactions[0].description").value("Client payment"))
                 .andExpect(jsonPath("$.classifiedTransactions[0].type").value("INCOME"))
                 .andExpect(jsonPath("$.classifiedTransactions[0].predictedCategory").doesNotExist())

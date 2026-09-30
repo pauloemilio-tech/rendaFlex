@@ -69,6 +69,9 @@ class FinancialAnalysisControllerTest {
                 .andExpect(jsonPath("$.financialProfile").value("HEALTHY"))
                 .andExpect(jsonPath("$.probability").value(0.80))
                 .andExpect(jsonPath("$.metrics.averageIncome").value(3000))
+                .andExpect(jsonPath("$.metrics.monthlyReference").value(3000))
+                .andExpect(jsonPath("$.metrics.monthlyCommitments").value(1200))
+                .andExpect(jsonPath("$.metrics.availableMargin").value(1800))
                 .andExpect(jsonPath("$.categorySummary.FOOD").value(500))
                 .andExpect(jsonPath("$.categoryPercentages.FOOD").value(100))
                 .andExpect(jsonPath("$.recommendations[0].priority").value("MEDIUM"));
@@ -202,7 +205,10 @@ class FinancialAnalysisControllerTest {
                         new BigDecimal("3000"),
                         new BigDecimal("10"),
                         new BigDecimal("20"),
-                        new BigDecimal("35")
+                        new BigDecimal("35"),
+                        new BigDecimal("3000"),
+                        new BigDecimal("1200"),
+                        new BigDecimal("1800")
                 ),
                 List.of(new ClassifiedTransaction(
                         "Supermercado",

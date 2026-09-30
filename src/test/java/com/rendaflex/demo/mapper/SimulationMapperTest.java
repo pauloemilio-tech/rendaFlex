@@ -118,6 +118,10 @@ class SimulationMapperTest {
                 bd("54.55"),
                 publicResponse.projectedScenario().metrics().fixedCommitmentPercentage()
         );
+        assertEquals(bd("1500.00"), publicResponse.currentScenario().metrics().monthlyCommitments());
+        assertEquals(bd("1800.00"), publicResponse.currentScenario().metrics().availableMargin());
+        assertEquals(bd("1800.00"), publicResponse.projectedScenario().metrics().monthlyCommitments());
+        assertEquals(bd("1500.00"), publicResponse.projectedScenario().metrics().availableMargin());
 
         assertEquals(bd("300.00"), publicResponse.newExpense().installmentAmount());
         assertEquals(1, publicResponse.recommendations().size());
@@ -345,13 +349,19 @@ class SimulationMapperTest {
                                 bd("3300"),
                                 bd("0.0247"),
                                 bd("0.2727"),
-                                bd("0.5455")
+                                bd("0.5455"),
+                                bd("3300"),
+                                bd("1800"),
+                                bd("1500")
                         )
                         : new InternalFinancialMetrics(
                                 bd("3300"),
                                 bd("0.0247"),
                                 bd("0.1818"),
-                                bd("0.4545")
+                                bd("0.4545"),
+                                bd("3300"),
+                                bd("1500"),
+                                bd("1800")
                         )
         );
     }

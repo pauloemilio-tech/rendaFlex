@@ -77,6 +77,12 @@ class ExpenseSimulationClientTest {
         assertThat(response.projectedScenario().probability())
                 .isEqualByComparingTo("0.78");
 
+        assertThat(response.currentScenario().metrics().availableMargin())
+                .isEqualByComparingTo("1800.0");
+
+        assertThat(response.projectedScenario().metrics().availableMargin())
+                .isEqualByComparingTo("1500.0");
+
         assertThat(response.quantitativeImpact().metricVariations())
                 .containsEntry("debtRatio", new BigDecimal("0.0909"))
                 .containsEntry("fixedCommitment", new BigDecimal("0.091"));
@@ -265,7 +271,10 @@ class ExpenseSimulationClientTest {
                       "averageIncome": 3300.0,
                       "incomeVariationCoefficient": 0.0247,
                       "debtRatio": 0.1818,
-                      "fixedCommitment": 0.4545
+                      "fixedCommitment": 0.4545,
+                      "monthlyReference": 3300.0,
+                      "monthlyCommitments": 1500.0,
+                      "availableMargin": 1800.0
                     }
                   },
                   "projectedScenario": {
@@ -275,7 +284,10 @@ class ExpenseSimulationClientTest {
                       "averageIncome": 3300.0,
                       "incomeVariationCoefficient": 0.0247,
                       "debtRatio": 0.2727,
-                      "fixedCommitment": 0.5455
+                      "fixedCommitment": 0.5455,
+                      "monthlyReference": 3300.0,
+                      "monthlyCommitments": 1800.0,
+                      "availableMargin": 1500.0
                     }
                   },
                   "quantitativeImpact": {

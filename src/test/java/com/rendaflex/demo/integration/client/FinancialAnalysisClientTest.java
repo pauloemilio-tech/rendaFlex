@@ -63,6 +63,9 @@ class FinancialAnalysisClientTest {
 
         assertThat(response.financialProfile().name()).isEqualTo("HEALTHY");
         assertThat(response.probability()).isEqualByComparingTo("0.91");
+        assertThat(response.metrics().monthlyReference()).isEqualByComparingTo("3300.0");
+        assertThat(response.metrics().monthlyCommitments()).isEqualByComparingTo("1500.0");
+        assertThat(response.metrics().availableMargin()).isEqualByComparingTo("1800.0");
         assertThat(response.classifiedTransactions()).hasSize(1);
         assertThat(response.categoryPercentages()).containsEntry(
                 com.rendaflex.demo.enums.TransactionCategory.TRANSPORT,
@@ -223,7 +226,10 @@ class FinancialAnalysisClientTest {
                     "averageIncome": 3300.0,
                     "incomeVariationCoefficient": 0.0247,
                     "debtRatio": 0.1818,
-                    "fixedCommitment": 0.4545
+                    "fixedCommitment": 0.4545,
+                    "monthlyReference": 3300.0,
+                    "monthlyCommitments": 1500.0,
+                    "availableMargin": 1800.0
                   },
                   "classifiedTransactions": [
                     {
