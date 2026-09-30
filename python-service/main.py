@@ -180,6 +180,11 @@ def analisar_financas(dados_entrada: dict[str, Any]) -> dict[str, Any]:
         if renda_media > 0
         else 1
     )
+    referencia_mensal = renda_media
+    compromissos_mensais = (
+        pagamentos_mensais_dividas + outras_despesas_fixas_mensais
+    )
+    margem_disponivel = referencia_mensal - compromissos_mensais
     saldo_estimado = renda_media - despesa_total
 
     valores_features = {
@@ -264,6 +269,9 @@ def analisar_financas(dados_entrada: dict[str, Any]) -> dict[str, Any]:
             "incomeVariationCoefficient": round(coef_variacao_renda, 4),
             "debtRatio": round(nivel_endividamento / 100, 4),
             "fixedCommitment": round(comprometimento_fixo, 4),
+            "monthlyReference": round(referencia_mensal, 2),
+            "monthlyCommitments": round(compromissos_mensais, 2),
+            "availableMargin": round(margem_disponivel, 2),
         },
         "classifiedTransactions": transacoes_classificadas,
         "categorySummary": {
