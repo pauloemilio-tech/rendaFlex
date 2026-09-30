@@ -7,8 +7,7 @@ export function Header() {
     <header className="app-header">
       <div className="header-content">
         <Link className="brand" to="/" aria-label="RendaFlex — página inicial">
-          <span className="brand-mark" aria-hidden="true">R</span>
-          <span>RendaFlex</span>
+          <img className="brand-logo" src="/assets/rendaFlex.logo1.png" alt="RendaFlex" />
         </Link>
         <div className="header-actions"><Navigation /><ThemeToggle /></div>
       </div>
