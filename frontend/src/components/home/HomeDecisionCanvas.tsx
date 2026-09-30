@@ -38,11 +38,11 @@ export function HomeDecisionCanvas() {
           </svg>
         </figure>
         <div className="decision-canvas-footer">
-          <div><span>Variação recente</span><strong>acompanhar de perto</strong></div>
+          <div><span>Histórico recente</span><strong>4 meses</strong></div>
           <div><span>Margem estimada</span><strong>R$ 1.240</strong></div>
         </div>
       </div>
-      <div className="decision-float decision-float-profile"><span>Leitura</span><strong>Renda oscilante</strong><i /></div>
+      <div className="decision-float decision-float-profile"><span>Variação recente</span><strong>22%</strong><i /></div>
       <div className="decision-float decision-float-commitment"><span>Compromissos</span><strong>47%</strong><small>da referência mensal</small></div>
     </aside>
   )

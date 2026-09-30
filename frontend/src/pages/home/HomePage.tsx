@@ -22,14 +22,14 @@ const readingSignals = [
   {
     icon: CalendarRange,
     title: 'Compromissos no calendário',
-    description: 'Entenda quanto da sua referência mensal já está reservado para parcelas e despesas recorrentes.',
-    detail: 'Fixos e recorrentes',
+    description: 'Veja quanto da referência mensal está comprometido com parcelas e despesas fixas — e qual margem permanece disponível.',
+    detail: 'Compromissos e margem',
   },
   {
     icon: WalletCards,
     title: 'Gastos com contexto',
-    description: 'Organize as despesas recentes por categoria para descobrir onde existe espaço para ajustar.',
-    detail: 'Padrões do dia a dia',
+    description: 'As transações recentes são organizadas por categoria para revelar padrões e dar contexto ao seu cenário financeiro.',
+    detail: 'Categorias do dia a dia',
   },
 ]
 
@@ -40,7 +40,7 @@ const journeySteps = [
   },
   {
     title: 'Enxergue seu ritmo financeiro',
-    description: 'A análise conecta variação, gastos e compromissos para formar uma referência mais realista.',
+    description: 'A análise observa a variação da renda e relaciona essa referência aos seus compromissos e gastos recentes.',
   },
   {
     title: 'Decida com o cenário à vista',
@@ -91,7 +91,7 @@ export function HomePage() {
           <div className="home-signal-layout">
             <article className="home-signal-feature">
               <div className="home-signal-icon"><CircleDollarSign aria-hidden="true" /></div>
-              <p>Em vez de perguntar apenas “quanto entrou?”, o RendaFlex ajuda a entender o que essa renda precisa sustentar e quanta flexibilidade ainda existe.</p>
+              <p>Em vez de perguntar apenas “quanto entrou?”, o RendaFlex relaciona renda, compromissos e gastos recentes. A análise também identifica seu perfil financeiro e traz recomendações de acordo com o cenário.</p>
               <strong>Menos palpite.<br />Mais referência.</strong>
             </article>
             <div className="home-signal-list">
@@ -115,7 +115,7 @@ export function HomePage() {
           <div className="home-rhythm-copy">
             <p>Faixa Flex</p>
             <h2 id="rhythm-title">Uma referência que respira com a sua renda</h2>
-            <p>A Faixa Flex transforma meses diferentes em uma leitura contínua. A largura acompanha a renda; os marcadores mostram quando compromissos e gastos diminuem sua margem de escolha.</p>
+            <p>A Faixa Flex transforma meses diferentes em uma leitura contínua. A renda forma o ritmo, os compromissos ocupam parte da referência e os gastos recentes ajudam a dar contexto ao seu comportamento financeiro.</p>
             <dl>
               <div><dt>Entradas</dt><dd>formam o ritmo</dd></div>
               <div><dt>Compromissos</dt><dd>ocupam espaço</dd></div>
@@ -183,13 +183,13 @@ export function HomePage() {
           <div className="home-simulation-copy">
             <p>Simulação de despesas</p>
             <h2 id="simulation-title">E se uma nova despesa entrar no próximo mês?</h2>
-            <p>Compare o cenário atual com uma projeção e veja como uma compra, parcela ou compromisso pode alterar sua margem financeira.</p>
+            <p>Compare margem, indicadores e perfil antes e depois de incluir uma nova despesa, com o nível de impacto do cenário projetado.</p>
             <ButtonLink to="/expense-simulation" variant="secondary" icon={<ArrowUpRight size={18} aria-hidden="true" />}>Simular uma despesa</ButtonLink>
           </div>
           <div className="home-simulation-visual" aria-label="Exemplo ilustrativo do impacto de uma nova despesa">
-            <div className="simulation-current"><span>Margem atual</span><strong>R$ 1.240</strong><small>referência mensal</small></div>
+            <div className="simulation-current"><span>Margem atual</span><strong>R$ 1.240</strong><small>após compromissos</small></div>
             <div className="simulation-connector"><span>nova parcela</span><strong>− R$ 320</strong></div>
-            <div className="simulation-projected"><span>Margem projetada</span><strong>R$ 920</strong><small>impacto moderado</small></div>
+            <div className="simulation-projected"><span>Margem projetada</span><strong>R$ 920</strong><small>após nova parcela</small></div>
           </div>
         </div>
       </section>
