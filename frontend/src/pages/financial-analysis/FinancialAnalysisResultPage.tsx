@@ -3,6 +3,7 @@ import { ArrowRight, RotateCcw, ShieldCheck, TrendingUp, Wallet, AlertTriangle }
 import { ButtonLink } from '../../components/common/ButtonLink'
 import { CategorySummarySection } from '../../components/financial-analysis/CategorySummarySection'
 import { ClassifiedTransactionsSection } from '../../components/financial-analysis/ClassifiedTransactionsSection'
+import { FlexRangeSection } from '../../components/financial-analysis/FlexRangeSection'
 import { RecommendationsSection } from '../../components/financial-analysis/RecommendationsSection'
 import { useFinancialAnalysis } from '../../hooks/useFinancialAnalysis'
 import {
@@ -13,7 +14,7 @@ import {
 } from '../../utils/financialAnalysisPresentation'
 
 export function FinancialAnalysisResultPage() {
-  const { result, clearResult } = useFinancialAnalysis()
+  const { request, result, clearResult } = useFinancialAnalysis()
   const navigate = useNavigate()
 
   if (!result) {
@@ -70,6 +71,8 @@ export function FinancialAnalysisResultPage() {
           </div>
         </div>
       </section>
+
+      <FlexRangeSection incomeHistory={request?.incomeHistory ?? []} metrics={result.metrics} />
 
       <section className="metrics-section" aria-labelledby="metrics-title">
         <h2 id="metrics-title">Indicadores financeiros</h2>
