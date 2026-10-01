@@ -12,6 +12,7 @@ import {
   formatPercentage,
   formatProbability,
 } from '../../utils/financialAnalysisPresentation'
+import '../../styles/results.css'
 
 export function FinancialAnalysisResultPage() {
   const { request, result, clearResult } = useFinancialAnalysis()
@@ -45,7 +46,7 @@ export function FinancialAnalysisResultPage() {
   }
 
   return (
-    <div className="result-page fade-slide-up">
+    <div className="result-page result-page--aligned result-page--analysis fade-slide-up">
       <header className="page-heading">
         <span className="eyebrow">Resultado da análise</span>
         <h1>Seu perfil financeiro</h1>
@@ -74,8 +75,12 @@ export function FinancialAnalysisResultPage() {
 
       <FlexRangeSection incomeHistory={request?.incomeHistory ?? []} metrics={result.metrics} />
 
-      <section className="metrics-section" aria-labelledby="metrics-title">
-        <h2 id="metrics-title">Indicadores financeiros</h2>
+      <section className="metrics-section result-section" aria-labelledby="metrics-title">
+        <div className="result-section-heading">
+          <span className="result-section-kicker">Leitura de apoio</span>
+          <h2 id="metrics-title">Indicadores financeiros</h2>
+          <p>Quatro medidas complementares para compreender o cenário analisado.</p>
+        </div>
         <div className="metrics-grid">
           {metrics.map((metric) => (
             <article className="metric-card" key={metric.label}>
@@ -86,13 +91,20 @@ export function FinancialAnalysisResultPage() {
         </div>
       </section>
 
-      <CategorySummarySection categorySummary={result.categorySummary} />
-      <ClassifiedTransactionsSection transactions={result.classifiedTransactions} />
+      <section className="result-context-group" aria-labelledby="spending-context-title">
+        <header className="result-chapter-heading">
+          <span className="result-section-kicker">Contexto de gastos</span>
+          <h2 id="spending-context-title">Como seus gastos aparecem</h2>
+          <p>As categorias e transações complementam a leitura dos indicadores.</p>
+        </header>
+        <CategorySummarySection categorySummary={result.categorySummary} />
+        <ClassifiedTransactionsSection transactions={result.classifiedTransactions} />
+      </section>
       <RecommendationsSection recommendations={result.recommendations} />
 
       <nav className="result-actions" aria-label="Ações do resultado">
         <ButtonLink to="/expense-simulation" icon={<ArrowRight className="button-icon" size={17} aria-hidden="true" />}>Simular nova despesa</ButtonLink>
-        <button className="button button-primary" type="button" onClick={startAgain}><span className="button-content">Fazer nova análise<RotateCcw className="button-icon" size={17} aria-hidden="true" /></span></button>
+        <button className="button button-secondary" type="button" onClick={startAgain}><span className="button-content">Fazer nova análise<RotateCcw className="button-icon" size={17} aria-hidden="true" /></span></button>
         <ButtonLink to="/" variant="secondary">Voltar para o início</ButtonLink>
       </nav>
     </div>
