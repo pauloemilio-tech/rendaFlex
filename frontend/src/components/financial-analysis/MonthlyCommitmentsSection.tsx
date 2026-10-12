@@ -10,7 +10,7 @@ type Props = {
 export function MonthlyCommitmentsSection({ monthlyDebtPayments, otherFixedMonthlyExpenses, errors, onChange }: Props) {
   return (
     <section className="form-section" aria-labelledby="commitments-title">
-      <div className="form-section-heading"><div><span className="step-number">4</span><h2 id="commitments-title">Compromissos mensais</h2></div></div>
+      <div className="form-section-heading"><div><span className="step-number">4</span><h2 id="commitments-title">Seus compromissos mensais</h2></div><p>Esses valores ajudam a estimar quanto da sua referência mensal já está comprometido.</p></div>
       <div className="two-column-fields">
         <div className="field-group">
           <label htmlFor="monthlyDebtPayments">Parcelas e dívidas mensais</label>
