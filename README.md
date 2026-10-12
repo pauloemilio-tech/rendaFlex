@@ -1,497 +1,256 @@
 <div align="center">
 
+<img src="./frontend/public/assets/rendaFlex.logo1.png" alt="RendaFlex" width="240" />
+
 # RendaFlex
 
-### Financial decision support designed for variable-income realities
+### Sua renda muda. Seu planejamento pode acompanhar.
 
-[![Status](https://img.shields.io/badge/status-MVP%20Functional%20%2F%20In%20Development-F59E0B?style=flat-square)](#project-status)
-[![Current Development](https://img.shields.io/badge/development-Solo%20Continuation-315B8C?style=flat-square)](#project-history)
+[![Project status](https://img.shields.io/badge/status-Functional%20MVP%20%2F%20In%20Active%20Development-F2765E?style=flat-square)](#project-status)
+[![Frontend](https://img.shields.io/badge/frontend-React%20%2B%20TypeScript-315B8C?style=flat-square)](#technology-stack)
+[![Backend](https://img.shields.io/badge/backend-Spring%20Boot-413333?style=flat-square)](#technology-stack)
+[![ML service](https://img.shields.io/badge/ML-FastAPI%20%2B%20scikit--learn-315B8C?style=flat-square)](#machine-learning)
 
-**Originally created during the Programa ONE Hackathon · Oracle Next Education**
+[Live demo](https://rendaflex.vercel.app/) · [Original Hackathon repository](https://github.com/No-Country-simulation/RendaFlex__G9-BR-Team05) · [Current repository](https://github.com/pauloemilio-tech/rendaFlex)
 
 </div>
 
 > [!IMPORTANT]
-> RendaFlex originally started as a collaborative project developed by a five-person team during the **Programa ONE Hackathon**, part of **Oracle Next Education**.
->
-> After the team completed and presented the original MVP, **I created this personal repository and continued the project independently**.
->
-> The original Hackathon work remains credited to the full team. All post-MVP evolution in this repository represents the project's new phase as an independently maintained and continuously evolving product.
-
----
-
-## Live Prototype
-
-[Open the RendaFlex frontend](https://rendaflex.vercel.app/)
-
-> The application already has a functional MVP and an integrated architecture, but the project is still under active development. Some interface, infrastructure, deployment, and product improvements may therefore evolve continuously.
-
----
+> RendaFlex began as a collaborative MVP at the **Programa ONE / Oracle Next Education Hackathon**. After the MVP was completed and presented, **Paulo Emilio** continued the project independently in this repository. The original work remains credited to the full Hackathon team; this repository represents the project's post-Hackathon evolution, not a project created from scratch by one person.
 
 ## About
 
-**RendaFlex** is a financial decision-support application designed for people whose income changes from month to month.
+RendaFlex is a financial decision-support application for people whose income changes from month to month. It combines recent income, recurring commitments, saving frequency and transaction context to help users understand their current financial position before taking on a new expense.
 
-Traditional financial tools are often structured around a predictable salary. RendaFlex approaches the problem differently: instead of treating monthly income as fixed, it analyzes recent income behavior, financial commitments, transactions, and spending patterns to help users understand their current financial scenario before making new decisions.
+The application provides an informational analysis—not financial advice—and currently works without user accounts or bank connections. Frontend results are kept only for the browser session.
 
-The project currently provides:
+## Project history
 
-- financial-profile analysis;
-- variable-income history analysis;
-- financial indicators;
-- monthly commitment and available-margin calculations;
-- transaction classification using Machine Learning;
-- spending summaries by category;
-- personalized financial recommendations;
-- expense simulation;
-- comparison between current and projected financial scenarios;
-- responsive frontend with light and dark themes;
-- an integrated Java + Python backend architecture.
+### Phase 1 — ONE Hackathon
 
-RendaFlex already has a **functional MVP**, but this repository represents an ongoing evolution of the product.
+The original MVP was designed and developed collaboratively for the **Programa ONE / Oracle Next Education Hackathon** by:
 
----
+| Contributor | Area |
+| --- | --- |
+| Deane Carvalho | Data |
+| Junior Ribeiro | Data |
+| Millena Belo | Backend |
+| Paulo Emilio | Full Stack |
+| Raul Oliveira | Backend |
 
-# Project History
+That phase established the product concept, data and ML work, Java backend, web experience and integrated MVP. Its source and history remain available in the [original team repository](https://github.com/No-Country-simulation/RendaFlex__G9-BR-Team05).
 
-## Phase 1 — ONE Hackathon
+### Phase 2 — Independent continuation
 
-RendaFlex was originally created during the **Programa ONE Hackathon**, part of **Oracle Next Education**, in collaboration with **Alura**.
+After the Hackathon, Paulo Emilio created this repository as the official home of his independent continuation of RendaFlex. Post-MVP work includes the current visual identity, a redesigned Home and result experience, responsive refinements, the **Faixa Flex**, margin comparison, product and UX improvements, and continued evolution of the architecture and financial metrics.
 
-The first version of the project was developed collaboratively by:
+## Current features
 
-- **Deane Carvalho** — Data
-- **Junior Ribeiro** — Data
-- **Millena Belo** — Backend
-- **Paulo Emilio** — Full Stack
-- **Raul Oliveira** — Backend
+- Variable-income analysis based on a 3–6 month history
+- Monthly debt payments, other fixed commitments and saving frequency
+- Recent income and expense transactions
+- ML-assisted transaction classification and category summaries
+- Financial profile, profile probability and financial indicators
+- Contextual recommendations
+- **Faixa Flex** visualization for income rhythm, monthly reference, commitments and available margin
+- New-expense simulation by description, total amount and installment count
+- Current-versus-projected profile, metrics, margin, impact and recommendations
+- Responsive interface with light and dark themes
+- Real integration between the React frontend, Spring Boot API and Python service
+- Dockerized backend and ML services, with deployments using Vercel and OCI
 
-The team worked together to define the problem, architecture, Machine Learning models, backend, frontend, infrastructure, integrations, and the first functional MVP.
-
-The original team repository is available at:
-
-**https://github.com/No-Country-simulation/RendaFlex__G9-BR-Team05**
-
-The contribution areas above describe the team's general areas of work during the Hackathon and are not intended as formal organizational titles.
-
----
-
-## Phase 2 — Independent Continuation
-
-After the original MVP was completed and presented during the Hackathon, **Paulo Emilio decided to continue developing RendaFlex independently**.
-
-This repository:
-
-**https://github.com/pauloemilio-tech/rendaFlex**
-
-was created from the original Hackathon codebase to serve as the new development home for the project.
-
-From this point forward, RendaFlex became an independently maintained project, with continued work focused on:
-
-- frontend redesign;
-- UI/UX improvements;
-- responsive behavior;
-- clearer financial visualization;
-- new financial metrics;
-- improved expense simulation;
-- backend evolution;
-- API contract improvements;
-- infrastructure and deployment refinement;
-- product positioning;
-- code quality;
-- testing;
-- future product capabilities.
-
-The goal is not to erase or replace the collaborative origin of the project, but to clearly separate:
+## Product flow
 
 ```text
-Original Hackathon MVP
-        ↓
-Collaborative team development
-        ↓
-MVP presentation
-        ↓
-Personal repository created
-        ↓
-Independent post-MVP evolution
-        ↓
-Current RendaFlex
+Income history
+    → monthly reference
+    → monthly commitments
+    → available margin
+    → financial profile
+    → transaction context
+    → recommendations
+    → new-expense simulation
+    → current vs. projected scenario
+```
 
-Project Status
-RendaFlex currently has a functional MVP, but the project is still actively being developed.
-Functional today
-- [x] Financial-analysis flow
-- [x] Variable-income history input
-- [x] Financial-profile prediction
-- [x] Transaction classification
-- [x] Category summaries
-- [x] Financial recommendations
-- [x] Expense simulation
-- [x] Current-versus-projected scenario comparison
-- [x] Spring Boot REST API
-- [x] Python/FastAPI Machine Learning service
-- [x] React + TypeScript frontend
-- [x] Dockerized backend services
-- [x] OCI infrastructure
-- [x] Vercel frontend deployment
-- [x] Light and dark themes
-- [x] Responsive interface
-- [x] Automated backend and ML tests
-- [x] End-to-end integration between frontend, Java backend, and Python service
-Currently evolving
-- [ ] Continued UI/UX refinement
-- [ ] Financial-analysis form redesign
-- [ ] Expense-simulation form redesign
-- [ ] Wider and more adaptive result-page layouts
-- [ ] Further mobile and tablet refinement
-- [ ] Production deployment synchronization
-- [ ] README and portfolio documentation improvements
-- [ ] Additional observability and infrastructure improvements
-- [ ] Persistent authenticated user history
-- [ ] Continuous financial tracking
-- [ ] Future post-MVP product features
-Product Concept
-RendaFlex is built around a simple idea:
-A person's financial planning should adapt to the rhythm of their income instead of assuming that every month looks the same.
+## Architecture
 
-The current product flow is:
-Recent income history
-        ↓
-Monthly reference
-        ↓
-Monthly commitments
-        ↓
-Available margin
-        ↓
-Financial profile
-        ↓
-Transaction context
-        ↓
-Recommendations
-        ↓
-New expense simulation
-        ↓
-Current scenario vs projected scenario
+```text
+┌──────────────────────────┐
+│ React + TypeScript       │
+│ Vite · Vercel            │
+└────────────┬─────────────┘
+             │ Public REST API (/api/v1)
+             ▼
+┌──────────────────────────┐
+│ Java + Spring Boot       │
+│ Docker · OCI Compute     │
+└────────────┬─────────────┘
+             │ Internal HTTP API (/internal/v1)
+             ▼
+┌──────────────────────────┐
+│ Python + FastAPI         │
+│ Pandas · scikit-learn    │
+│ Serialized ML models     │
+└──────────────────────────┘
+```
 
-Financial Analysis
-The analysis form collects information such as:
-- three to six months of recent income;
-- saving frequency;
-- recent transactions;
-- monthly debt payments;
-- other fixed monthly expenses.
-The application validates the information before sending the analysis request to the backend.
-The financial-analysis flow is:
-FinancialAnalysisPage
-        ↓
-financialAnalysisService
-        ↓
-financialAnalysisApi
-        ↓
-Spring Boot API
-        ↓
-Python / FastAPI
-        ↓
-Machine Learning models
-        ↓
-Financial analysis result
+The frontend calls the Spring Boot API; it does **not** call Python directly. Spring Boot validates public requests, maps the public and internal contracts, orchestrates the use cases and handles integration failures. FastAPI owns feature calculation and model inference.
 
-Financial Metrics
-The application currently works with several financial indicators.
-Among them:
-- average income;
-- income variation coefficient;
-- debt ratio;
-- fixed commitment percentage;
-- monthly reference;
-- monthly commitments;
-- available margin.
+Docker Compose runs the Java and Python services together. The current Python image packages the serialized `.pkl` artifacts so it can start independently; OCI Object Storage is used as supporting artifact infrastructure rather than as a required runtime download step.
+
+### Public API
+
+The implemented public contract uses the `/api/v1` base path:
+
+| Method | Endpoint | Purpose |
+| --- | --- | --- |
+| `POST` | `/api/v1/financial-analyses` | Generate the financial analysis |
+| `POST` | `/api/v1/expense-simulations` | Compare current and projected scenarios |
+| `POST` | `/api/v1/transactions/classify` | Classify transaction descriptions |
+
+The current contract reference is [`docs/api/rendaflex_api_contract_v2.0.0.json`](./docs/api/rendaflex_api_contract_v2.0.0.json).
+
+## Frontend
+
+The frontend is a React single-page application with routes for Home, financial analysis, analysis results, expense simulation and simulation results. It includes form validation, loading and error states, responsive layouts, theme persistence and session-based result persistence.
+
+The post-MVP redesign uses **Manrope** and a visual system centered on `#F5EBDD`, `#F2765E`, `#315B8C` and `#413333`, with asymmetric desktop compositions, a custom mascot and dedicated result visualizations.
+
+## Backend
+
+The Java 17 / Spring Boot API provides request validation, business rules, standardized errors and the public REST boundary. Dedicated gateways and HTTP clients connect it to the Python service with configured timeouts, retry behavior and response validation.
+
+The backend also adapts internal decimal ratios to public percentages, calculates installment values and derives simulation fields such as profile change, financial-health worsening and impact level.
+
+## Machine learning
+
+The Python service loads the model artifacts generated during the Data/ML work and exposes internal endpoints consumed by Spring Boot:
+
+- **Financial profile:** Random Forest
+- **Transaction classification:** TF-IDF vectorization + Multinomial Naive Bayes
+- **Data processing and inference:** Pandas, NumPy, scikit-learn and joblib
+
+The financial profile returned by the model is one of `HEALTHY`, `UNDER_OBSERVATION` or `AT_RISK`. Transaction expenses are organized into the public categories `FOOD`, `TRANSPORT`, `HEALTH`, `HOUSING`, `EDUCATION`, `ENTERTAINMENT`, `SERVICES` and `OTHER`.
+
+## Financial metrics and Faixa Flex
+
+The analysis currently exposes:
+
+- `averageIncome`
+- `incomeVariationCoefficientPercentage`
+- `debtRatioPercentage`
+- `fixedCommitmentPercentage`
+- `monthlyReference`
+- `monthlyCommitments`
+- `availableMargin`
+
 For the current MVP:
+
+```text
 monthlyReference = averageIncome
 
-monthlyCommitments =
-monthlyDebtPayments
-+
-otherFixedMonthlyExpenses
+monthlyCommitments = monthlyDebtPayments
+                   + otherFixedMonthlyExpenses
 
-availableMargin =
-monthlyReference
--
-monthlyCommitments
-
-Recent transactions provide financial context and category information, but they are not directly added to monthlyCommitments.
-Flex Range
-One of the main post-Hackathon product evolutions is the Flex Range.
-The Flex Range provides a visual representation of how recent income behaves across the months informed by the user and how that income relates to the user's financial commitments.
-It combines:
-- recent income history;
-- monthly reference;
-- monthly commitments;
-- available margin;
-- fixed commitment percentage.
-The visualization is intended to help users understand their financial rhythm rather than reducing their situation to a single isolated number.
-Expense Simulation
-After completing a financial analysis, the user can simulate a new expense.
-The simulation receives:
-- expense description;
-- total amount;
-- number of installments.
-The backend recalculates the projected scenario and compares it with the current financial situation.
-The flow is:
-Current financial scenario
-        ↓
-New monthly installment
-        ↓
-Projected financial scenario
-
-The interface compares:
-- current margin;
-- new installment;
-- projected margin;
-- current financial profile;
-- projected financial profile;
-- probabilities;
-- debt indicators;
-- fixed commitment;
-- impact level;
-- recommendations.
-Architecture
-The current application architecture is:
-React + TypeScript
-        │
-        ▼
-Spring Boot REST API
-        │
-        ▼
-Python / FastAPI
-        │
-        ▼
-Machine Learning models
-
-The deployed architecture uses:
-React + TypeScript
-        │
-      Vercel
-        │
-        ▼
-Spring Boot
- OCI Compute / Docker
-        │
-        ▼
-Python / FastAPI
- OCI Compute / Docker
-        │
-        └──────────────► OCI Object Storage
-                         ML artifacts
-
-The frontend never communicates directly with the Python service.
-Frontend
-The frontend is built with:
-- React 19;
-- TypeScript;
-- Vite;
-- React Router;
-- lucide-react;
-- CSS Custom Properties.
-The frontend is responsible for:
-- collecting user input;
-- client-side validation;
-- API communication;
-- presenting financial analysis;
-- displaying classified transactions;
-- presenting the Flex Range;
-- displaying recommendations;
-- expense simulation;
-- scenario comparison;
-- responsive interaction;
-- accessibility-oriented feedback.
-The frontend does not calculate Machine Learning features or call the Python service directly.
-UI / UX Evolution
-The post-MVP phase introduced a major visual redesign.
-The current visual identity uses:
-- cream: #F5EBDD
-- coral: #F2765E
-- blue: #315B8C
-- dark brown: #413333
-The main typography is based on Manrope.
-The design direction focuses on:
-- asymmetric layouts;
-- broader use of desktop space;
-- responsive behavior;
-- controlled visual contrast;
-- financial information hierarchy;
-- data-driven visualizations;
-- accessible interactions;
-- light and dark themes.
-The main Home message is:
-Your income changes. Your planning can keep up.
-
-The redesign also introduced a visual identity and mascot specifically developed for RendaFlex.
-Spring Boot Backend
-The Spring Boot API is responsible for:
-- public REST endpoints;
-- request validation;
-- business rules;
-- DTO mapping;
-- API contracts;
-- orchestration between frontend and Python;
-- expense-simulation support;
-- error handling;
-- CORS configuration;
-- integration with the Python service.
-Main public operations include:
-POST /api/v1/financial-analyses
-POST /api/v1/expense-simulations
-POST /api/v1/transactions/classify
-
-Python and Machine Learning
-The Python service is built with FastAPI and is responsible for feature engineering and Machine Learning inference.
-The project uses:
-Financial-profile model
-- Random Forest
-Transaction-classification model
-- TF-IDF
-- Multinomial Naive Bayes
-The Python service calculates and returns financial features, classifications, probabilities, and derived information required by the backend.
-The final public transaction categories include:
-FOOD
-TRANSPORT
-HEALTH
-HOUSING
-EDUCATION
-ENTERTAINMENT
-SERVICES
-OTHER
-
-Model Artifacts
-For the MVP, serialized .pkl Machine Learning artifacts are packaged directly into the Python Docker image.
-OCI Object Storage is also used as an artifact repository and infrastructure proof of concept.
-A future evolution may dynamically load model artifacts from Object Storage at runtime.
-API Contract
-The public API contract is versioned and documented at:
-docs/api/rendaflex_api_contract_v2.0.0.json
-
-The contract defines:
-- public endpoints;
-- internal integration schemas;
-- request and response structures;
-- validation rules;
-- enums;
-- financial metrics;
-- error structures;
-- timeout behavior;
-- Java-to-Python integration policies.
-Technology Stack
-Frontend
-- React 19
-- TypeScript
-- Vite
-- React Router
-- lucide-react
-- CSS Custom Properties
-Backend
-- Java
-- Spring Boot
-Data and Machine Learning
-- Python
-- FastAPI
-- Pandas
-- Scikit-learn
-Modeling
-- Random Forest
-- TF-IDF
-- Multinomial Naive Bayes
-Infrastructure
-- Docker
-- Docker Compose
-- Oracle Cloud Infrastructure
-- OCI Compute
-- OCI Object Storage
-- Vercel
-Engineering Workflow
-- Git
-- GitHub
-- feature branches
-- Pull Requests
-- automated tests
-- API contract versioning
-Testing and Quality
-The project includes automated and manual validation across multiple layers.
-Current quality practices include:
-- Java unit tests;
-- Java integration tests;
-- Python tests;
-- Spring Boot–Python integration validation;
-- frontend TypeScript checks;
-- ESLint;
-- Vite production builds;
-- git diff --check;
-- responsive interface validation;
-- light and dark theme validation;
-- error, loading, and empty states;
-- accessibility-oriented labels and keyboard focus;
-- end-to-end API validation.
-Privacy
-RendaFlex currently does not require:
-- user registration;
-- bank-account connection;
-- financial institution credentials.
-Analysis data is handled within the current application session.
-The product is intended as a financial organization and decision-support tool and does not replace professional financial advice.
-Repository Structure
-rendaFlex/
-├── frontend/
-│   └── React + TypeScript application
-│
-├── src/
-│   └── Spring Boot backend
-│
-├── python-service/
-│   └── FastAPI + Machine Learning service
-│
-├── docs/
-│   └── API contracts and examples
-│
-├── infra/
-│   └── Infrastructure configuration
-│
-├── Dockerfile
-└── docker-compose.yml
-
-Roadmap
-The next development stages include:
-1. continue refining the analysis and simulation interfaces;
-2. improve wide-screen and responsive layouts;
-3. evolve financial visualizations;
-4. improve deployment and observability;
-5. introduce authenticated users;
-6. persist financial history;
-7. support continuous financial tracking;
-8. evolve Machine Learning artifact loading;
-9. expand product analytics;
-10. continue developing RendaFlex beyond the original Hackathon MVP.
-Credits and Authorship
-Original ONE Hackathon MVP
-The original RendaFlex MVP was collaboratively developed by:
-- Deane Carvalho — Data
-- Junior Ribeiro — Data
-- Millena Belo — Backend
-- Paulo Emilio — Full Stack
-- Raul Oliveira — Backend
-Original repository:
-https://github.com/No-Country-simulation/RendaFlex__G9-BR-Team05
-Current Project Development
-After completion and presentation of the Hackathon MVP, the project entered a new development phase.
-Paulo Emilio created this repository and took responsibility for the continued independent development of RendaFlex.
-Current repository:
-https://github.com/pauloemilio-tech/rendaFlex
-The current repository therefore contains both:
-- the collaborative foundation created during the ONE Hackathon;
-- the subsequent independent evolution developed after the MVP.
-<div align="center">
-
-RendaFlex
-Your income changes. Your planning can keep up.
-Functional MVP · Actively evolving
-</div>
+availableMargin = monthlyReference - monthlyCommitments
 ```
+
+Recent transactions provide spending and classification context and contribute to the profile analysis, but they are intentionally excluded from `monthlyCommitments` and `availableMargin`.
+
+The **Faixa Flex**, introduced during the independent continuation, turns these values into a visual reading of recent income rhythm, monthly reference, committed share and remaining margin. Negative margins are preserved and highlighted rather than hidden.
+
+## Expense simulation
+
+The simulation accepts a description, total amount and number of installments. The backend calculates the monthly installment, and the system evaluates the expense as an additional monthly commitment.
+
+The result compares:
+
+- current and projected available margin;
+- current and projected financial profile and probability;
+- current and projected financial indicators;
+- whether the profile changed or financial health worsened;
+- impact level and recommendations.
+
+## Technology stack
+
+| Layer | Technologies |
+| --- | --- |
+| Frontend | React, TypeScript, Vite, React Router, lucide-react, CSS |
+| Backend | Java 17, Spring Boot, Maven |
+| Data / ML | Python, FastAPI, Pandas, NumPy, scikit-learn, joblib |
+| Models | Random Forest, TF-IDF, Multinomial Naive Bayes |
+| Infrastructure | Docker, Docker Compose, OCI Compute, OCI Object Storage, Terraform, Vercel |
+
+## Testing and quality
+
+The repository contains:
+
+- Java unit, controller, validation, mapper, integration-client, gateway and end-to-end tests;
+- Python/FastAPI tests for analysis metrics, negative margin behavior, simulations and transaction classification;
+- frontend linting and TypeScript/Vite production-build checks.
+
+Useful verification commands:
+
+```bash
+./mvnw test
+
+cd python-service
+pytest
+
+cd ../frontend
+npm run lint
+npm run build
+```
+
+No fixed test count is documented here because the suites continue to evolve with the project.
+
+## Running locally
+
+Start the backend and ML service:
+
+```bash
+docker compose up --build
+```
+
+Then configure and start the frontend:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+For local integration, set `VITE_API_BASE_URL=http://localhost:8080`. The optional `VITE_USE_MOCK_API=true` switch is available for isolated frontend work; the integrated flow uses the real Spring Boot API.
+
+## Project status
+
+**Functional MVP / In Active Development**
+
+### Working today
+
+- End-to-end financial analysis and expense-simulation flows
+- Spring Boot API and Python model service integration
+- Financial metrics, transaction classification and recommendations
+- Faixa Flex and current-versus-projected margin comparison
+- Responsive interface and light/dark themes
+- Automated backend and Python coverage
+- Docker-based service deployment, OCI infrastructure and Vercel frontend
+
+### Still evolving
+
+- Visual refinement of forms and result pages
+- Fine-grained responsiveness and deployment synchronization
+- Observability and operational visibility
+- Authenticated users and persistent financial history
+- Product validation and broader product capabilities
+- Future infrastructure and model-delivery improvements
+
+The existence of a deployed, functional MVP should not be read as a claim that the product is finished or generally production-ready.
+
+## Credits and repositories
+
+RendaFlex's foundation belongs to the collaborative Hackathon phase and to the five-person team credited above. The independent continuation is maintained by **Paulo Emilio**, while preserving that original authorship and project history.
+
+- **Original Hackathon repository:** [No-Country-simulation/RendaFlex__G9-BR-Team05](https://github.com/No-Country-simulation/RendaFlex__G9-BR-Team05)
+- **Independent continuation:** [pauloemilio-tech/rendaFlex](https://github.com/pauloemilio-tech/rendaFlex)
