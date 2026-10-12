@@ -42,7 +42,7 @@ That phase established the product concept, data and ML work, Java backend, web 
 
 ### Phase 2 — Independent continuation
 
-After the Hackathon, Paulo Emilio created this repository as the official home of his independent continuation of RendaFlex. Post-MVP work includes the current visual identity, a redesigned Home and result experience, responsive refinements, the **Faixa Flex**, margin comparison, product and UX improvements, and continued evolution of the architecture and financial metrics.
+After the Hackathon, I created this repository as the official home of his independent continuation of RendaFlex. Post-MVP work includes the current visual identity, a redesigned Home and result experience, responsive refinements, the **Faixa Flex**, margin comparison, product and UX improvements, and continued evolution of the architecture and financial metrics.
 
 ## Current features
 
