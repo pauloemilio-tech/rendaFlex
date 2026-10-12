@@ -14,7 +14,7 @@
 > [!IMPORTANT]
 > RendaFlex originally started as a collaborative project developed by a five-person team during the **Programa ONE Hackathon**, part of **Oracle Next Education**.
 >
-> After the team completed and presented the original MVP, **Paulo Emilio created this personal repository and continued the project independently**.
+> After the team completed and presented the original MVP, **I created this personal repository and continued the project independently**.
 >
 > The original Hackathon work remains credited to the full team. All post-MVP evolution in this repository represents the project's new phase as an independently maintained and continuously evolving product.
 
